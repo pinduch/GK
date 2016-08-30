@@ -6,7 +6,8 @@ namespace UnityStandardAssets.Vehicles.Car
 {
     public class SkidTrail : MonoBehaviour
     {
-		float m_PersistTime;
+        [SerializeField] private float m_PersistTime;
+
 
         private IEnumerator Start()
         {
