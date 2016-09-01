@@ -2,51 +2,72 @@
 
 public class particle : MonoBehaviour
 {
-	static Random random = new Random();
-
-	Vector2 acceleration = new Vector2(0.001f, 0.001f);
-	Vector2 velocity = new Vector2(Random.value, Random.value);
-	int lifeTime = 24;
-	Vector2 position;
+	public static int lifeTime;
+	Vector3 velocity;
+	Vector3 acceleration;
+	Vector3 position;
+	float scale;
+	Color color;
 
 	// Use this for initialization
 	void Start()
 	{
-		lifeTime = 1000;
+		transform.position += randomVector ();
+		position = transform.position;
+		acceleration = randomVector () / 20000;
+		velocity = randomVector () / 20000;
+
 		particleSystem ps = (particleSystem)FindObjectOfType(typeof(particleSystem));
-		position = ps.transform.position;
-		velocity = new Vector2(Random.Range(-1f,1f)/8, Random.Range(-1f,1f)/8);
+		lifeTime = 200;
+
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		velocity += acceleration;
-		float newX = transform.localScale.x - 0.02f;
-		//GetComponent<Renderer>().material.color = Color.red;
-		if (newX > 0)
-		{
-			transform.localScale = new Vector3(newX, newX, newX);
-		}
 		position += velocity;
-		lifeTime--;
-
 		transform.position = position;
+		transform.Rotate (0.5f, 0.5f, 0.5f);
 
-		if (isDead())
-		{
-			Destroy(gameObject);
-		}
+	//	if (lifeTime < (lifeTime / 10)) {
+	//		scale = transform.lossyScale.x - 0.1f;
+	//		if (scale > 0)
+	//			transform.localScale = new Vector3 (scale, scale, scale);
+	//	}
 
-	}
+	//	color = transform.GetComponent<SpriteRenderer>().color;
+	//	color = new Color (color.r, color.g, color.b, color.a - 3.0f);
+	//	transform.GetComponent<SpriteRenderer> ().color = color;
 
-	public particle(Vector2 position)
-	{
-		this.position = position;
+	//	transform.GetComponent<Shader> ().maximumLOD (UIVertex.simpleVert.color.a);
+
+		lifeTime--;
+	//	Color color = transform.GetComponent<Shader> ().color;
+
+
+	//	if (isDead ()) 
+		//Destroy (transform.gameObject);
+	//		Destroy(gameObject);
 	}
 
 	public bool isDead()
 	{
 		return lifeTime < 0;
 	}
+
+	public Vector3 randomVector(){
+		float x, y, z;
+		Vector3 movement;
+
+		x = Random.Range(-0.25f, 0.25f);
+		y = Random.Range(0.0f, 1.0f);
+		z = Random.Range(-0.25f, 0.25f);
+
+		movement = new Vector3 (x, y, z);
+
+		return movement;
+	}
+
+
 }
