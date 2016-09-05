@@ -4,7 +4,7 @@
     <Files>
       <File FileName="Assets\Scripts\particle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\particleSystem.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MoveAnimation.cs" Line="11" Column="31" />
+      <File FileName="Assets\Scripts\MoveAnimation.cs" Line="58" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
