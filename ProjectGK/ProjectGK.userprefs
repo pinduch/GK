@@ -1,10 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MoveAnimation.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ChangeCamera.cs">
     <Files>
-      <File FileName="Assets\Scripts\particle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\particleSystem.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MoveAnimation.cs" Line="58" Column="40" />
+      <File FileName="Assets\Scripts\MoveAnimation.cs" Line="104" Column="26" />
+      <File FileName="Assets\Scripts\ChangeCamera.cs" Line="27" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
