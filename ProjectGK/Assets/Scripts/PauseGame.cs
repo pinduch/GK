@@ -15,9 +15,9 @@ public class PauseGame : MonoBehaviour {
 	public void pause(){
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			if (canvas.gameObject.activeInHierarchy == false) {
+				car.GetComponent<CarAudio>().enabled = false;
 				canvas.gameObject.SetActive (true);
 				Time.timeScale = 0;
-				car.GetComponent<CarAudio>().enabled = false;
 			} else {
 				canvas.gameObject.SetActive (false);
 				Time.timeScale = 1;

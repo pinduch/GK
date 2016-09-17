@@ -15,31 +15,33 @@ public class MoveAnimation : MonoBehaviour {
 	public Transform leftFoot;
 	public Transform leftLeg;
 	public Transform leftUpLeg;
+	public Transform highSpin;
+	public Transform middleSpin;
 
 	// other variables
 	public int counter = 0;
 	public int stepCounter = 0;
 	public int lastStepCounter = 0;
+	public int catchCar = 0;
 
-	public bool endCameraFollow = false;
+	public static bool endCameraFollow = false;
 
 	// Use this for initialization
 	void Start () {
-
+		endCameraFollow = false;
+		leftUpLeg.Rotate (0f, 0f, -20f); 	// lewa do tyłu
+		leftLeg.Rotate (0f, 0f, -40f);		// lewy piszczel w tył
+		rightUpLeg.Rotate (0f, 0f, 20f);	// prawa w przód  --  to jest pozycja startowa do marszu
+		leftArm.Rotate (0f, 0f, 17.5f);
+		leftForeArm.Rotate (0f, 0f, 20f);
+		rightArm.Rotate (0f, 0f, -17.5f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (stepCounter < 1) {
+		if (stepCounter < 2) {
 			if (counter < 100) {
-				leftUpLeg.Rotate (0f, 0f, -0.2f); 	// lewa do tyłu
-				leftLeg.Rotate (0f, 0f, -0.4f);		// lewy piszczel w tył
-				rightUpLeg.Rotate (0f, 0f, 0.2f);	// prawa w przód  --  to jest pozycja startowa do marszu
-				leftArm.Rotate (0f, 0f, 0.175f);
-				leftForeArm.Rotate (0f, 0f, 0.2f);
-				rightArm.Rotate (0f, 0f, -0.175f);
-			} else if (counter < 200) {
 				leftUpLeg.Rotate (0f, 0f, 0.4f);   // lewa przód
 				rightUpLeg.Rotate (0f, 0f, -0.4f); // prawa w tył
 				leftArm.Rotate (0f, 0f, -0.3f);
@@ -47,21 +49,21 @@ public class MoveAnimation : MonoBehaviour {
 				rightArm.Rotate (0f, 0f, 0.3f);
 				rightForeArm.Rotate (0f, 0f, 0.2f);
 				skelet.position += skelet.forward * 0.018f;
-			} else if (counter < 250) {
+			} else if (counter < 150) {
 				leftLeg.Rotate (0f, 0f, 0.8f);  	// wyprostuj lewy piszczel
 				rightLeg.Rotate (0f, 0f, -0.8f);	// zegnij prawy piszczel
 				leftArm.Rotate (0f, 0f, -0.1f);
 				rightArm.Rotate (0f, 0f, 0.1f);
 				skelet.position += skelet.forward * 0.011f;
-			} else if (counter < 350) {
-				rightUpLeg.Rotate (0f, 0f, 0.4f); 	//
+			} else if (counter < 250) {
+				rightUpLeg.Rotate (0f, 0f, 0.4f); 	
 				leftUpLeg.Rotate (0f, 0f, -0.4f);
 				leftArm.Rotate (0f, 0f, 0.3f);
 				leftForeArm.Rotate (0f, 0f, 0.2f);
 				rightArm.Rotate (0f, 0f, -0.3f);
 				rightForeArm.Rotate (0f, 0f, -0.2f);
 				skelet.position += skelet.forward * 0.018f;
-			} else if (counter < 400) {
+			} else if (counter < 300) {
 				rightLeg.Rotate (0f, 0f, 0.8f);
 				leftLeg.Rotate (0f, 0f, -0.8f);
 				leftArm.Rotate (0f, 0f, 0.1f);
@@ -70,10 +72,12 @@ public class MoveAnimation : MonoBehaviour {
 			}
 			counter++;
 
-			if (counter > 400) {
-				stepCounter++;
-				counter = 100;
+			if (counter > 300) {
+				counter = 0;
+			} else if (counter == 150) {
+				stepCounter++;					
 			}
+
 		} else {
 			if (lastStepCounter < 50) {
 				if (leftUpLeg.rotation.z > 0) {
@@ -98,13 +102,19 @@ public class MoveAnimation : MonoBehaviour {
 					}
 				}
 				lastStepCounter++;
+			} else {
+				if (catchCar < 100) {
+					middleSpin.Rotate (0f, 0f, -0.3f);
+					highSpin.Rotate (0f, 0f, -0.1f);
+					rightArm.Rotate (0f, 0f, 0.8f);
+					rightForeArm.Rotate (0f, 0f, 0.5f);
+					catchCar++;
+				} else {
+					endCameraFollow = true;
+				}
+
 			}
 		}
-
-		endCameraFollow = true;
 	}
-
-	public bool getEndCameraFollow(){
-		return this.endCameraFollow;
-	}
+		
 }

@@ -17,7 +17,6 @@ public class particle : MonoBehaviour
 		acceleration = randomVector () / 20000;
 		velocity = randomVector () / 20000;
 
-		particleSystem ps = (particleSystem)FindObjectOfType(typeof(particleSystem));
 		lifeTime = 500;
 
 	}
