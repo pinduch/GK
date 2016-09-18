@@ -1,58 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FinishDetect : MonoBehaviour {
 
 	public GameObject meta;
+	public Text lapText;
+	public Text timeText;
 	private int lapCounter = 0;
+	private bool onFinish = false;
+	private float elapsedTime;
 
 	// Use this for initialization
 	void Start () {
-		
+		lapText.text = "Lap: 0 / 3";
+		timeText.text = "Time: " + Time.time;
 	}
 
 	// Update is called once per frame
 	void Update () {
 
+		if (checkCollision ()) {
+			onFinish = true;
+		} 
+		if (!checkCollision () && onFinish) {
+			lapCounter++;
+			lapText.text = "Lap: " + lapCounter.ToString () + " / 3";
+			onFinish = false;
 
-		if (Mathf.Abs (meta.transform.position.x - this.transform.position.x) <= (meta.transform.localScale.x + this.transform.localScale.x) / 2) {
-			if (Mathf.Abs (meta.transform.position.y - this.transform.position.y) <= (meta.transform.localScale.y + this.transform.localScale.y) / 2) {
-				if (Mathf.Abs (meta.transform.position.z - this.transform.position.z) <= (meta.transform.localScale.z + this.transform.localScale.z) / 2) {
-					Debug.Log ("kolizja z metą numer: " + lapCounter);
-					lapCounter++;
-				}
-			}
 		}
-		else
-			Debug.Log ("Brak kolizji");
-
-
-		// to coś zle działa !!!!! :( :( :(
-
-//		Debug.Log("local scale: \n" +
-//			"x = " + this.gameObject.transform.localScale.x + "\n" +
-//			"y = " + this.gameObject.transform.localScale.y + "\n" +
-//			"z = " + this.gameObject.transform.localScale.z +  "\n\n" +
-//			"lossy scale: \n" +
-//			"x = " + this.gameObject.transform.lossyScale.x + "\n" +
-//			"y = " + this.gameObject.transform.lossyScale.y + "\n" +
-//			"z = " + this.gameObject.transform.lossyScale.z);
-//
-
-
-
-		if (true){
-			
+		if (lapCounter > 0) {
+			elapsedTime += Time.deltaTime;
+			timeText.text = "Time: " + elapsedTime.ToString ("f2");
 		}
+	}
 
-//		if (abs(posX - c->posX)  <= (sizex + c->sizex)/2) {
-//			if (abs(posY - c->posY)  <= (sizey + c->sizey)/2) {
-//				if (abs(posZ - c->posZ)  <= (sizez + c->sizez)/2) {
-//					obj->set_color((GLfloat *)Colors[rand() % 10]);
-//					set_color((GLfloat *)Colors[rand() % 10]);
-//				}
-//			}
-//		}
 
+	private bool checkCollision(){
+
+		if (Mathf.Abs (meta.transform.position.x - this.transform.FindChild ("Cube").position.x) <=
+		    (meta.GetComponent<Renderer> ().bounds.size.x + this.transform.FindChild ("Cube").GetComponent<Renderer> ().bounds.size.x) / 2) {
+			if (Mathf.Abs (meta.transform.position.y - this.transform.FindChild ("Cube").position.y) <=
+			    (meta.GetComponent<Renderer> ().bounds.size.y + this.transform.FindChild ("Cube").GetComponent<Renderer> ().bounds.size.y) / 2) {
+				if (Mathf.Abs (meta.transform.position.z - this.transform.FindChild ("Cube").position.z) <=
+				    (meta.GetComponent<Renderer> ().bounds.size.z + this.transform.FindChild ("Cube").GetComponent<Renderer> ().bounds.size.z) / 2) {
+					return true;
+				} else
+					return false;
+			} else
+				return false;
+		} else
+			return false;
 	}
 }
