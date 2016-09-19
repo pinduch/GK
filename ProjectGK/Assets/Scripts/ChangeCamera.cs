@@ -8,6 +8,7 @@ public class ChangeCamera : MonoBehaviour {
 	public GameObject carCamera;
 	public GameObject skelet;
 	public GameObject car;
+	private bool isCarEnabled = false;
 
 	// Use this for initialization
 	void Start () {
@@ -19,12 +20,13 @@ public class ChangeCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (MoveAnimation.endCameraFollow) {
+		if (MoveAnimation.endCameraFollow && !isCarEnabled) {
 			skeletCamera.SetActive (false);
 			carCamera.SetActive (true);
 			skelet.SetActive (false);
 			car.GetComponent<CarUserControl>().enabled = true;
 			car.GetComponent<CarAudio>().enabled = true;
+			isCarEnabled = true;
 		}
 	}
 

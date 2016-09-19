@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\ChangeCamera.cs" />
      <Compile Include="Assets\Scripts\CollisionDetect.cs" />
      <Compile Include="Assets\Scripts\FinishDetect.cs" />
+     <Compile Include="Assets\Scripts\GameOver.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\MoveAnimation.cs" />
      <Compile Include="Assets\Scripts\PauseGame.cs" />

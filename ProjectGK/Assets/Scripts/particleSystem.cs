@@ -18,9 +18,9 @@ public class particleSystem : MonoBehaviour
 		if (CollisionDetect.burnCar) {
 			particles.Add (Instantiate (obj, transform.position, Quaternion.identity));
 			
-			if ((particles.Count / 2) >= limit) {
+			if ((particles.Count - 100) >= limit) {
 
-				for (int i = 0; i <= Random.Range (30, 150); i++) {
+				for (int i = 0; i <= Random.Range (1, 20); i++) {
 					Destroy ((GameObject)particles [i]);
 					particles.RemoveAt (i);
 				}

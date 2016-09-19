@@ -8,6 +8,7 @@ public class particle : MonoBehaviour
 	Vector3 position;
 	float scale;
 	Color color;
+	private float alpha = 0.035f;
 
 	// Use this for initialization
 	void Start()
@@ -16,38 +17,23 @@ public class particle : MonoBehaviour
 		position = transform.position;
 		acceleration = randomVector () / 20000;
 		velocity = randomVector () / 20000;
-
 		lifeTime = 500;
-
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		velocity += acceleration;
-		position += velocity;
-		transform.position = position;
-		transform.Rotate (0.5f, 0.5f, 0.5f);
-
-	//	if (lifeTime < (lifeTime / 10)) {
-	//		scale = transform.lossyScale.x - 0.1f;
-	//		if (scale > 0)
-	//			transform.localScale = new Vector3 (scale, scale, scale);
-	//	}
-
-	//	color = transform.GetComponent<SpriteRenderer>().color;
-	//	color = new Color (color.r, color.g, color.b, color.a - 3.0f);
-	//	transform.GetComponent<SpriteRenderer> ().color = color;
-
-	//	transform.GetComponent<Shader> ().maximumLOD (UIVertex.simpleVert.color.a);
-
-		lifeTime--;
-	//	Color color = transform.GetComponent<Shader> ().color;
-
-
-	//	if (isDead ()) 
-		//Destroy (transform.gameObject);
-	//		Destroy(gameObject);
+		if (CollisionDetect.burnCar) {
+			velocity += acceleration;
+			position += velocity;
+			transform.position = position;
+			transform.Rotate (0.5f, 0.5f, 0.5f);
+			if (alpha > 0)
+				alpha -= 0.00005f;
+			color = new Color (1, 1, 1, alpha);
+			GetComponent<Renderer> ().material.SetColor ("_TintColor", color);
+		}
+			
 	}
 
 	public bool isDead()
@@ -60,7 +46,7 @@ public class particle : MonoBehaviour
 		Vector3 movement;
 
 		x = Random.Range(-0.25f, 0.25f);
-		y = Random.Range(0.0f, 1.0f);
+		y = Random.Range(0.4f, 1.0f);
 		z = Random.Range(-0.25f, 0.25f);
 
 		movement = new Vector3 (x, y, z);

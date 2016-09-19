@@ -14,7 +14,7 @@ public class FinishDetect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lapText.text = "Lap: 0 / 3";
-		timeText.text = "Time: " + Time.time;
+		timeText.text = "Time: 0:00";
 	}
 
 	// Update is called once per frame
@@ -27,7 +27,6 @@ public class FinishDetect : MonoBehaviour {
 			lapCounter++;
 			lapText.text = "Lap: " + lapCounter.ToString () + " / 3";
 			onFinish = false;
-
 		}
 		if (lapCounter > 0) {
 			elapsedTime += Time.deltaTime;
