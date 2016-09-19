@@ -5,6 +5,8 @@ Project("{DDD75723-EE5F-077B-04BB-C6C8A8FC0D99}") = "ProjectGK", "Assembly-CShar
 EndProject
 Project("{DDD75723-EE5F-077B-04BB-C6C8A8FC0D99}") = "ProjectGK", "Assembly-CSharp.csproj", "{4B753554-4F1B-E6A9-664B-F81994272080}"
 EndProject
+Project("{DDD75723-EE5F-077B-04BB-C6C8A8FC0D99}") = "ProjectGK", "Assembly-CSharp-Editor.csproj", "{CBD7C03F-3B18-AE3C-4CD7-BB502028D2B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{4B753554-4F1B-E6A9-664B-F81994272080}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B753554-4F1B-E6A9-664B-F81994272080}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B753554-4F1B-E6A9-664B-F81994272080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBD7C03F-3B18-AE3C-4CD7-BB502028D2B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBD7C03F-3B18-AE3C-4CD7-BB502028D2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBD7C03F-3B18-AE3C-4CD7-BB502028D2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBD7C03F-3B18-AE3C-4CD7-BB502028D2B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

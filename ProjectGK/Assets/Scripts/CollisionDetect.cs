@@ -14,6 +14,8 @@ public class CollisionDetect : MonoBehaviour {
 
 	void OnCollisionEnter(){
 		startCollision = true;
+		collisionCounter++;
+
 //		collisionCounter++;
 //		life -= collisionCounter;
 //
@@ -31,8 +33,7 @@ public class CollisionDetect : MonoBehaviour {
 	void OnCollisionExit(){
 		if (startCollision && (life > 0)) {
 			startCollision = false;
-			collisionCounter++;
-			life -= collisionCounter*10;
+			life = 100 - collisionCounter*10;
 		}
 	}
 	 
@@ -42,7 +43,8 @@ public class CollisionDetect : MonoBehaviour {
 	}
 
 	void Update(){
-		
+
+		if (life < 0) life = 0;
 		lifes.text = "Life: " + life.ToString () + " %";
 
 		if (burnCar){
