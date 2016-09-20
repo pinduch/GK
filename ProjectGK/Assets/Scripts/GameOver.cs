@@ -17,7 +17,6 @@ public class GameOver : MonoBehaviour {
 	void Update () {
 		if (CollisionDetect.burnCar) {
 			time += Time.deltaTime;
-			Debug.Log (time);
 			if (time > 5.0f) {
 				gameOver.gameObject.SetActive (true);
 			} else {

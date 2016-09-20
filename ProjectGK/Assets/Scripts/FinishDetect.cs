@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityStandardAssets.Vehicles.Car;
 
 public class FinishDetect : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class FinishDetect : MonoBehaviour {
 	private int lapCounter = 0;
 	private bool onFinish = false;
 	private float elapsedTime;
+	public Transform finishGame;
 
 	// Use this for initialization
 	void Start () {
@@ -25,12 +27,25 @@ public class FinishDetect : MonoBehaviour {
 		} 
 		if (!checkCollision () && onFinish) {
 			lapCounter++;
-			lapText.text = "Lap: " + lapCounter.ToString () + " / 3";
+			if (lapCounter > 3) {
+				lapText.text = "Lap: 3 / 3";
+			} else {
+				lapText.text = "Lap: " + lapCounter.ToString () + " / 3";
+			}
 			onFinish = false;
 		}
 		if (lapCounter > 0 && lapCounter <= 3 && !CollisionDetect.burnCar) {
 			elapsedTime += Time.deltaTime;
 			timeText.text = "Time: " + elapsedTime.ToString ("f2");
+			finishGame.gameObject.SetActive (false);
+		} else if (lapCounter > 3 && !CollisionDetect.burnCar) {
+			finishGame.gameObject.SetActive (true);
+			if (this.GetComponent<CarUserControl>().isActiveAndEnabled == true)
+				this.GetComponent<CarUserControl>().enabled = false;
+			if (this.GetComponent<CarAudio>().isActiveAndEnabled == true)
+				this.GetComponent<CarAudio>().enabled = false;
+		} else {
+			finishGame.gameObject.SetActive (false);
 		}
 	}
 
