@@ -13,7 +13,6 @@ public class particle : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		transform.position += randomVector ();
 		position = transform.position;
 		acceleration = randomVector () / 20000;
 		velocity = randomVector () / 20000;

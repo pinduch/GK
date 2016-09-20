@@ -40,6 +40,7 @@ public class CollisionDetect : MonoBehaviour {
 
 	void Start () {
 		lifes.text = "Life: " + life.ToString () + " %";
+		startCollision = false;
 	}
 
 	void Update(){

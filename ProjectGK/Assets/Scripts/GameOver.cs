@@ -4,6 +4,7 @@ using System.Collections;
 public class GameOver : MonoBehaviour {
 
 	public Transform gameOver;
+	private float time;
 
 	// Use this for initialization
 	void Start () {
@@ -12,16 +13,15 @@ public class GameOver : MonoBehaviour {
 
 	// coś nie działa to jeszcze chyba na debugu trzeba przepatrzyć.
 
-
 	// Update is called once per frame
 	void Update () {
 		if (CollisionDetect.burnCar) {
-			if (gameOver.gameObject.activeInHierarchy == false) {
+			time += Time.deltaTime;
+			Debug.Log (time);
+			if (time > 5.0f) {
 				gameOver.gameObject.SetActive (true);
-				Time.timeScale = 0;
 			} else {
 				gameOver.gameObject.SetActive (false);
-				Time.timeScale = 1;
 			}
 		}
 	}

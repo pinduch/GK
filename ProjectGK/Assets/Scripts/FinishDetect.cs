@@ -28,7 +28,7 @@ public class FinishDetect : MonoBehaviour {
 			lapText.text = "Lap: " + lapCounter.ToString () + " / 3";
 			onFinish = false;
 		}
-		if (lapCounter > 0 && lapCounter <= 3) {
+		if (lapCounter > 0 && lapCounter <= 3 && !CollisionDetect.burnCar) {
 			elapsedTime += Time.deltaTime;
 			timeText.text = "Time: " + elapsedTime.ToString ("f2");
 		}

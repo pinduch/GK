@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour {
 
 	public void LoadOn(){
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+		CollisionDetect.burnCar = false;
 		Time.timeScale = 1;
 	}
 
